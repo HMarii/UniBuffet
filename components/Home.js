@@ -1,20 +1,36 @@
 import React from 'react'
-import {View, Text, StyleSheet, Image, FlatList} from 'react-native'
+import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Feather from 'react-native-vector-icons/Feather'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { isWithStatement } from 'typescript'
 import colors from '../assets/colors/colors'
 import categoriesData from '../assets/data/categoriesData'
 import popularData  from '../assets/data/popularData'
+
+Feather.loadFont();
+MaterialCommunityIcons.loadFont();
 
 export default Home = () => {
 
     const renderCategoryItem = ({ item }) => {
         return (
-            <View style={styles.categoryItemWrapper}>
+            <View style={[styles.categoryItemWrapper, {
+                backgroundColor: item.selected ? colors.primary : colors.textLight,
+                marginLeft: item.selected == 1 ?  20 : 0
+            }]}>
+                
                 <Image source={item.image} style={styles.categoryItemImage}></Image>
                 <Text style={styles.categoryItemTitle}>{item.title}</Text>
-                <View style={styles.categorySelectWrapper}>
-                    <Feather name="chevron-right" size={8} style={styles.categorySelectIcon}></Feather>
+                <View style={[styles.categorySelectWrapper, {
+                    backgroundColor: item.selected ? colors.white : colors.secondary
+                }]}>
+                    <Feather 
+                        name="chevron-right" 
+                        size={8} 
+                        style={styles.categorySelectIcon} 
+                        color={item.selected ? colors.black : colors.white }>
+                    </Feather>
                 </View>
             </View>
         );
@@ -23,6 +39,9 @@ export default Home = () => {
 
     return (
         <View style={styles.container}>
+            <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsVerticalScrollIndicator={false}>
             {/* Fejléc */}
             <SafeAreaView>
                 <View style={styles.header}>
@@ -59,7 +78,70 @@ export default Home = () => {
                     />
                 </View>
             </View>
+
+            {/* Népszerűek */}
+            <View style={styles.popularWrapper}>
+          <Text style={styles.popularTitle}>Népszerű</Text>
+          {popularData.map((item) => (
+            <TouchableOpacity
+              key={item.id}
+              onPress={() =>
+                navigation.navigate('Details', {
+                  item: item,
+                })
+              }>
+              <View
+                style={[
+                  styles.popularCardWrapper,
+                  {
+                    marginTop: item.id == 1 ? 10 : 20,
+                  },
+                ]}>
+                <View>
+                  <View>
+                    <View style={styles.popularTopWrapper}>
+                      <MaterialCommunityIcons
+                        name="crown"
+                        size={12}
+                        color={colors.primary}
+                      />
+                      <Text style={styles.popularTopText}>Heti kínálatunk</Text>
+                    </View>
+                    <View style={styles.popularTitlesWrapper}>
+                      <Text style={styles.popularTitlesTitle}>
+                        {item.title}
+                      </Text>
+                      <Text style={styles.popularTitlesWeight}>
+                        Tömeg {item.weight}
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styles.popularCardBottom}>
+                    <View style={styles.addPizzaButton}>
+                      <Feather name="plus" size={10} color={colors.textDark} />
+                    </View>
+                    <View style={styles.ratingWrapper}>
+                      <MaterialCommunityIcons
+                        name="star"
+                        size={10}
+                        color={colors.textDark}
+                      />
+                      <Text style={styles.rating}>{item.rating}</Text>
+                    </View>
+                  </View>
+                </View>
+
+                <View style={styles.popularCardRight}>
+                  <Image source={item.image} style={styles.popularCardImage} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          ))}
+          
         </View>
+        </ScrollView>
+    </View>
+    
     );
 };
 
@@ -123,13 +205,13 @@ const styles = StyleSheet.create({
 
     categoriesWrapper: {
         marginTop: 30,
-        paddingHorizontal: 20,
+        
     },
 
     categoriesTitle: {
         fontFamily: 'Montserrat-Bold',
         fontSize: 20,
-
+        paddingHorizontal: 20,
     },
 
     categoriesListWrapper: {
@@ -138,23 +220,112 @@ const styles = StyleSheet.create({
     },
 
     categoryItemWrapper: {
-        backgroundColor: colors.textLight
+        backgroundColor: colors.textLight,
+        marginRight: 20,
+        borderRadius: 20,
     },
 
     categorySelectIcon: {
-
+        alignSelf: 'center',
     },
 
     categorySelectWrapper: {
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+        width: 26,
+        height: 26,
+        borderRadius: 26,
+        marginBottom: 20,
 
     },
 
     categoryItemTitle: {
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Medium',
+        fontSize: 14,
+        marginTop: 10,
+
 
     },
 
     categoryItemImage: {
+        width: 60,
+        height: 60,
+        marginTop: 25,
+        alignSelf: 'center',
+        marginHorizontal: 20,
+    },
+    popularWrapper: {
+        paddingHorizontal: 20,
+        
 
     },
+    popularTitle: {
+        fontSize: 16,
+        fontFamily: 'Montserrat-Bold',
+    },
+    popularCardWrapper: {
+        backgroundColor: colors.white,
+        borderRadius: 25,
+        paddingTop: 20,
+        paddingLeft: 20,
+        flexDirection: 'row',
+        overflow: 'hidden',
+
+
+    },
+    popularTopWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+
+    },
+
+    popularTopText: {
+        marginLeft: 10,
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 14,
+
+    },
+ 
+
+    popularTitlesWrapper: {
+        marginTop: 20,
+    },
+    popularTitlesTitle: {
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 14,
+        color: colors.textDark,
+    },
+    popularTitlesWeight: {
+        fontFamily: 'Montserrat-Medium',
+        fontSize: 12,
+        color: colors.textLight,
+        marginTop: 5,
+    },
+    addPizzaButton: {
+        backgroundColor: colors.primary,
+        paddingHorizontal: 40,
+        paddingVertical: 20,
+        borderTopRightRadius: 25,
+        borderBottomLeftRadius: 25,
+      },
+      ratingWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 20,
+      },
+      rating: {
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 12,
+        color: colors.textDark,
+        marginLeft: 5,
+      },
+      popularCardBottom: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+        marginLeft: -20,
+      },
 
 });
