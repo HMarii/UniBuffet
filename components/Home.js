@@ -46,7 +46,7 @@ export default Home = () => {
             <SafeAreaView>
                 <View style={styles.header}>
 
-                    <Image source={require('../assets/images/profile.png')} style={styles.profileImage}/>
+                    <Image source={require('../assets/images/wolfprofile.png')} style={styles.profileImage}/>
 
                    <Feather name="menu" size={24} colors={colors.textDark}/>
                 </View>
@@ -54,7 +54,7 @@ export default Home = () => {
 
             {/* Címkék */}
             <View style={styles.titlesWrapper}>
-                <Text style={styles.titlesSubtitle}>Étel</Text>
+                <Text style={styles.titlesSubtitle}>Farkas éhes vagy?</Text>
                 <Text style={styles.titlesTitle}>Kiszállítás</Text>
             </View>
 
@@ -91,6 +91,7 @@ export default Home = () => {
                 })
               }>
               <View
+                key={item.id}
                 style={[
                   styles.popularCardWrapper,
                   {
@@ -223,6 +224,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.textLight,
         marginRight: 20,
         borderRadius: 20,
+        shadowColor: colors.black,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 2,
     },
 
     categorySelectIcon: {
@@ -272,6 +281,14 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         flexDirection: 'row',
         overflow: 'hidden',
+        shadowColor: colors.black,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 2,
 
 
     },
