@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ScrollView} f
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { isWithStatement } from 'typescript'
 import colors from '../assets/colors/colors'
 import categoriesData from '../assets/data/categoriesData'
 import popularData  from '../assets/data/popularData'
@@ -11,15 +10,14 @@ import popularData  from '../assets/data/popularData'
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-export default Home = () => {
+export default Home = ({ navigation }) => {
 
     const renderCategoryItem = ({ item }) => {
         return (
             <View style={[styles.categoryItemWrapper, {
                 backgroundColor: item.selected ? colors.primary : colors.textLight,
                 marginLeft: item.selected == 1 ?  20 : 0
-            }]}>
-                
+              }]}>
                 <Image source={item.image} style={styles.categoryItemImage}></Image>
                 <Text style={styles.categoryItemTitle}>{item.title}</Text>
                 <View style={[styles.categorySelectWrapper, {
@@ -36,7 +34,6 @@ export default Home = () => {
         );
     };
 
-
     return (
         <View style={styles.container}>
             <ScrollView
@@ -45,10 +42,8 @@ export default Home = () => {
             {/* Fejléc */}
             <SafeAreaView>
                 <View style={styles.header}>
-
                     <Image source={require('../assets/images/wolfprofile.png')} style={styles.profileImage}/>
-
-                   <Feather name="menu" size={24} colors={colors.textDark}/>
+                    <Feather name="menu" size={24} colors={colors.textDark}/>
                 </View>
             </SafeAreaView>
 
@@ -81,17 +76,16 @@ export default Home = () => {
 
             {/* Népszerűek */}
             <View style={styles.popularWrapper}>
-          <Text style={styles.popularTitle}>Népszerű</Text>
-          {popularData.map((item) => (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                navigation.navigate('Details', {
-                  item: item,
-                })
-              }>
-              <View
+              <Text style={styles.popularTitle}>Népszerű</Text>
+              {popularData.map((item) => (
+              <TouchableOpacity
                 key={item.id}
+                onPress={() =>
+                  navigation.navigate('Details', {
+                    item: item,
+                  })
+                }>
+              <View
                 style={[
                   styles.popularCardWrapper,
                   {
@@ -138,7 +132,6 @@ export default Home = () => {
               </View>
             </TouchableOpacity>
           ))}
-          
         </View>
         </ScrollView>
     </View>
@@ -150,7 +143,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -158,68 +150,56 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         alignItems: 'center'
     },
-
     profileImage: {
         height: 40,
         width: 40,
         borderRadius: 40,
     },
-
     titlesWrapper: {
         marginTop: 30,
         paddingHorizontal: 20,
     },
-
     titlesSubtitle: {
         fontFamily: "Montserrat-Regular",
         fontSize: 16,
         color: colors.textDark,
     },
-
     titlesTitle: {
         fontFamily: "Montserrat-Bold",
         fontSize: 32,
         color: colors.textDark,
         marginTop: 5,
     },
-
     searchText: {
         fontFamily: 'Montserrat-SemiBold',
         fontSize: 14,
         marginBottom: 5,
         color: colors.textLight,
     },
-
     search: {
         flex: 1, /* A képernyő teljes szélességét kitölti*/
         marginLeft: 10,
         borderBottomColor: colors.textLight,
         borderBottomWidth: 2,
     },
-
     searchWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,
         marginTop: 30,
     },
-
     categoriesWrapper: {
         marginTop: 30,
-        
     },
-
     categoriesTitle: {
         fontFamily: 'Montserrat-Bold',
         fontSize: 20,
         paddingHorizontal: 20,
     },
-
     categoriesListWrapper: {
         paddingTop: 15,
         paddingBottom: 20,
     },
-
     categoryItemWrapper: {
         backgroundColor: colors.textLight,
         marginRight: 20,
@@ -233,11 +213,9 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         elevation: 2,
     },
-
     categorySelectIcon: {
         alignSelf: 'center',
     },
-
     categorySelectWrapper: {
         alignSelf: 'center',
         justifyContent: 'center',
@@ -246,18 +224,13 @@ const styles = StyleSheet.create({
         height: 26,
         borderRadius: 26,
         marginBottom: 20,
-
     },
-
     categoryItemTitle: {
         textAlign: 'center',
         fontFamily: 'Montserrat-Medium',
         fontSize: 14,
         marginTop: 10,
-
-
     },
-
     categoryItemImage: {
         width: 60,
         height: 60,
@@ -267,8 +240,6 @@ const styles = StyleSheet.create({
     },
     popularWrapper: {
         paddingHorizontal: 20,
-        
-
     },
     popularTitle: {
         fontSize: 16,
@@ -289,23 +260,16 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.05,
         shadowRadius: 10,
         elevation: 2,
-
-
     },
     popularTopWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-
     },
-
     popularTopText: {
         marginLeft: 10,
         fontFamily: 'Montserrat-SemiBold',
         fontSize: 14,
-
     },
- 
-
     popularTitlesWrapper: {
         marginTop: 20,
     },
@@ -344,5 +308,4 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: -20,
       },
-
 });

@@ -19,5 +19,4 @@ const categoriesData = [
     },
 ];
 
-
 export default categoriesData;
