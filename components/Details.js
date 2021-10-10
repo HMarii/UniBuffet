@@ -1,10 +1,12 @@
 import React from 'react'
-import {View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native'
+import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { isTemplateExpression } from 'typescript';
 import colors from '../assets/colors/colors';
-export default Details = ({ navigation }) => {
+export default Details = ({ route, navigation }) => {
 
+    const { item } = route.params;
     return (
         <View style={styles.container}>
             {/* Fejléc */}
@@ -27,7 +29,18 @@ export default Details = ({ navigation }) => {
             </SafeAreaView>
 
             {/* Címkék */}
+            <View style={styles.titlesWrapper}>
+                <Text style={styles.titleText}>
+                    {item.title}
+                </Text>
 
+            </View>
+            {/* Árak */}
+            <View style={styles.priceWrapper}>
+                <Text style={styles.priceText}>
+                        {item.price + " HUF"}
+                </Text>
+            </View>
         </View>
     );
 };
@@ -56,4 +69,25 @@ const styles = new StyleSheet.create({
         padding: 12,
         borderRadius: 10,
     },
+    titlesWrapper: {
+        paddingHorizontal: 20,
+        marginTop: 30,
+
+
+    },
+    titleText: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 32,
+        color: colors.textDark,
+    },
+    priceWrapper: {
+        paddingTop: 20,
+        paddingHorizontal: 20,
+
+    },
+    priceText: {
+        color: colors.price,
+        fontFamily: 'MontSerrat-Bold',
+        fontSize: 32,
+    }
 })
