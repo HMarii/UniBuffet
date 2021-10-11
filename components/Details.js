@@ -2,7 +2,6 @@ import React from 'react'
 import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { isTemplateExpression } from 'typescript';
 import colors from '../assets/colors/colors';
 export default Details = ({ route, navigation }) => {
 
