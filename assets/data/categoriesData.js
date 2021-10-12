@@ -8,7 +8,7 @@ const categoriesData = [
     {
         id: '2',
         image: require("../images/shrimp-icon.png"),
-        title: 'Sós rák',
+        title: 'Fincsi Torta',
         selected: false,
     },
     {

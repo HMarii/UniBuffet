@@ -88,7 +88,7 @@ export default Details = ({ route, navigation }) => {
             <TouchableOpacity onPress={() => alert("Sikeres rendelés")}>
                 <View style={styles.orderWrapper}>
                     <Text styles={styles.orderText}>Rendelés</Text>
-                    <Feather name="chevron-right" size={18} color={colors.black}></Feather>
+                    <Feather name="chevron-right" size={18} color={colors.black}/>
                 </View>
             </TouchableOpacity>
         </View>
@@ -200,7 +200,8 @@ const styles = new StyleSheet.create({
         resizeMode: 'contain'
     },
     orderWrapper: {
-        marginHorizontal: 150,
+        marginTop: 60,
+        marginHorizontal: 20,
         backgroundColor: colors.primary,
         borderRadius: 50,
         paddingVertical: 25,
