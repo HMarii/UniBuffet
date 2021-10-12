@@ -7,13 +7,13 @@ const categoriesData = [
     },
     {
         id: '2',
-        image: require("../images/shrimp-icon.png"),
+        image: require("../images/cake-icon.png"),
         title: 'Fincsi Torta',
         selected: false,
     },
     {
         id: '3',
-        image: require("../images/soda-icon.png"),
+        image: require("../images/coffee-icon.png"),
         title: 'Kávé',
         selected: false,
     },
