@@ -1,11 +1,22 @@
 import React from 'react'
-import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text} from 'react-native'
+import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, Image, FlatList} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../assets/colors/colors';
 export default Details = ({ route, navigation }) => {
 
     const { item } = route.params;
+
+    const renderIngredientsItem = ({ item }) => {
+        return (
+            <View style={[styles.ingredientsItemWrapper , {
+                marginLeft: item.id === '1' ? 20 : 0
+            }
+            ]}>
+                <Image source={item.image} style={styles.ingredientImage} />
+            </View>
+        )
+    }
     return (
         <View style={styles.container}>
             {/* Fejléc */}
@@ -40,6 +51,46 @@ export default Details = ({ route, navigation }) => {
                         {item.price + " HUF"}
                 </Text>
             </View>
+
+            {/* Info */}
+            <View style={styles.infoWrapper}>
+                <View styles={styles.leftInfoWrapper}>
+                    <View style={styles.infoItemWrapper}>
+                        <Text style={styles.infoItemTitle}>Méret</Text>
+                        <Text style={styles.infoItemText}>{item.sizeName} {item.sizeNumber} cm</Text>
+                    </View>
+                    <View style={styles.infoItemWrapper}>
+                        <Text style={styles.infoItemTitle}>Várható kiszállítás</Text>
+                        <Text style={styles.infoItemText}>{item.deliveryTime} perc</Text>
+                    </View>
+                </View>
+
+                <View styles={styles.rightInfoWrapper}>
+                    <Image source={item.image} styles={styles.itemImage}/>
+                </View>
+            </View>
+
+            {/* Hozzávalók */}
+            <View style={styles.ingredientsWrapper}>
+                <Text style={styles.ingredientsTitle}>Hozzávalók</Text>
+                <View style={styles.ingredientsListWrapper}>
+                    <FlatList 
+                        data={item.ingredients}
+                        renderItem={renderIngredientsItem}
+                        keyExtractor={item => item.id}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+            </View>
+
+            {/* Megrendelés Gomb */}
+            <TouchableOpacity onPress={() => alert("Sikeres rendelés")}>
+                <View style={styles.orderWrapper}>
+                    <Text styles={styles.orderText}>Rendelés</Text>
+                    <Feather name="chevron-right" size={18} color={colors.black}></Feather>
+                </View>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -71,8 +122,6 @@ const styles = new StyleSheet.create({
     titlesWrapper: {
         paddingHorizontal: 20,
         marginTop: 30,
-
-
     },
     titleText: {
         fontFamily: 'Montserrat-Bold',
@@ -82,11 +131,91 @@ const styles = new StyleSheet.create({
     priceWrapper: {
         paddingTop: 20,
         paddingHorizontal: 20,
-
     },
     priceText: {
         color: colors.price,
         fontFamily: 'MontSerrat-Bold',
         fontSize: 32,
-    }
+    },
+    infoWrapper: {
+        marginTop: 30,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    leftInfoWrapper: {
+        paddingLeft: 20,
+
+    },
+    infoItemWrapper: {
+        paddingLeft: 20,
+        marginBottom: 20,
+
+    },
+    infoItemTitle: {
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 14,
+        color: colors.textDark,
+    },
+    infoItemText: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 18,
+        color: colors.textDark,
+    },
+    itemImage: {
+        resizeMode: 'contain',
+        marginLeft: 50,
+    },
+    ingredientsWrapper: {
+        marginTop: 30,
+
+    },
+    ingredientsTitle: {
+        paddingHorizontal: 20,
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 16,
+        color: colors.textDark,
+    },
+    ingredientsListWrapper: {
+        paddingVertical: 20,
+    },
+    ingredientsItemWrapper: {
+        backgroundColor: colors.white,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 10,
+        marginRight: 15,
+        borderRadius: 15,
+        shadowColor: colors.black,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 2,
+
+    },
+    ingredientImage: {
+        resizeMode: 'contain'
+    },
+    orderWrapper: {
+        marginHorizontal: 150,
+        backgroundColor: colors.primary,
+        borderRadius: 50,
+        paddingVertical: 25,
+        paddingHorizontal: 25,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+
+
+    },
+    orderText: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 14,
+        marginRight: 10,
+
+    },
+
 })

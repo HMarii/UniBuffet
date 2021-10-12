@@ -75,7 +75,7 @@ export default Home = ({ navigation }) => {
 
             {/* Népszerűek */}
             <View style={styles.popularWrapper}>
-              <Text style={styles.popularTitle}>Népszerű</Text>
+              <Text style={styles.popularTitle}>Népszerűek</Text>
               {popularData.map((item) => (
               <TouchableOpacity
                 key={item.id}
