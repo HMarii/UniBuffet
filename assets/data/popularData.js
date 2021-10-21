@@ -1,9 +1,9 @@
 const popularData = [
     {
         id: '1',
-        image: require("../images/pizza1.png"),
+        image: require("../images/frenchtoast.png"),
         title: 'Fincsi Bundáskenyér',
-        weight: '500 gramm',
+        weight: '3 szelet',
         rating: '4.69',
         price: '600',
         sizeName: 'Közepes',
@@ -22,11 +22,6 @@ const popularData = [
             },
             {
                 id: '3',
-                name: 'tomato',
-                image: require('../images/tomato.png')
-            },
-            {
-                id: '4',
                 name: 'garlic',
                 image: require('../images/garlic.png')
             },
@@ -35,10 +30,10 @@ const popularData = [
     },
     {
         id: '2',
-        image: require("../images/pizza2.png"),
+        image: require("../images/picake.png"),
         title: 'Nagymami Tortája',
-        weight: '1200 gramm',
-        rating: '4.0',
+        weight: '12 szelet',
+        rating: '4.3.14',
         price: '15000',
         sizeNumber: 36,
         sizeName: 'Nagy',
@@ -60,7 +55,7 @@ const popularData = [
         id: '3',
         image: require("../images/pizza3.png"),
         title: 'Hugi Pizzája',
-        weight: '1000 gramm',
+        weight: '8 szelet',
         rating: '4.20',
         price: '2000',
         sizeName: 'Közepes',

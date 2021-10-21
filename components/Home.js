@@ -48,16 +48,9 @@ export default Home = ({ navigation }) => {
 
             {/* Címkék */}
             <View style={styles.titlesWrapper}>
-                <Text style={styles.titlesSubtitle}>Farkas éhes vagy?</Text>
-                <Text style={styles.titlesTitle}>Kiszállítás</Text>
-            </View>
-
-            {/* Keresés */}
-            <View style={styles.searchWrapper}>
-                <Feather name="search" size={16} color={colors.textDark}></Feather>
-                <View style={styles.search}>
-                    <Text style={styles.searchText}>Keresés...</Text>
-                </View>
+                <Text style={styles.titlesSubtitle}>Hoppácska</Text>
+                <Text style={styles.titlesTitle}>Farkas éhes vagy?</Text>
+                <Text style={styles.titlesSubtitle}>Semmi gond, a WolfBüfé elűzi az éhséget</Text>
             </View>
 
             {/* Kategóriák */}
@@ -106,7 +99,7 @@ export default Home = ({ navigation }) => {
                         {item.title}
                       </Text>
                       <Text style={styles.popularTitlesWeight}>
-                        Tömeg {item.weight}
+                        {item.weight}
                       </Text>
                     </View>
                   </View>
@@ -125,8 +118,8 @@ export default Home = ({ navigation }) => {
                   </View>
                 </View>
 
-                <View style={styles.popularCardRight}>
-                  <Image source={item.image} style={styles.popularCardImage} />
+                <View>
+                  <Image source={item.image} />
                 </View>
               </View>
             </TouchableOpacity>
@@ -286,7 +279,8 @@ const styles = StyleSheet.create({
     addPizzaButton: {
         backgroundColor: colors.primary,
         paddingHorizontal: 40,
-        paddingVertical: 20,
+        marginTop: 40,
+        paddingVertical: 15,
         borderTopRightRadius: 25,
         borderBottomLeftRadius: 25,
       },
@@ -299,7 +293,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         fontSize: 12,
         color: colors.textDark,
-        marginLeft: 5,
+        marginLeft: 8,
       },
       popularCardBottom: {
         flexDirection: 'row',

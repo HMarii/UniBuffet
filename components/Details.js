@@ -85,7 +85,7 @@ export default Details = ({ route, navigation }) => {
             </View>
 
             {/* Megrendelés Gomb */}
-            <TouchableOpacity onPress={() => alert("Sikeres rendelés")}>
+            <TouchableOpacity onPress={() => navigation.navigate("OrderDetails")}>
                 <View style={styles.orderWrapper}>
                     <Text styles={styles.orderText}>Rendelés</Text>
                     <Feather name="chevron-right" size={18} color={colors.black}/>
