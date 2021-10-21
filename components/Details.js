@@ -12,6 +12,7 @@ export default Details = ({ route, navigation }) => {
             <View style={[styles.ingredientsItemWrapper , {
                 marginLeft: item.id === '1' ? 20 : 0
             }
+            
             ]}>
                 <Image source={item.image} style={styles.ingredientImage} />
             </View>

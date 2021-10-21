@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ScrollView, SafeAreaView} from 'react-native'
+import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ScrollView, SafeAreaView, Button} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../assets/colors/colors'
@@ -42,7 +42,7 @@ export default Home = ({ navigation }) => {
             <SafeAreaView>
                 <View style={styles.header}>
                     <Image source={require('../assets/images/wolfprofile.png')} style={styles.profileImage}/>
-                    <Feather name="menu" size={24} colors={colors.textDark}/>
+                    
                 </View>
             </SafeAreaView>
 
