@@ -2,6 +2,7 @@ import React from 'react'
 import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, Image, FlatList} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import popularData  from '../assets/data/popularData'
 import colors from '../assets/colors/colors';
 export default Details = ({ route, navigation }) => {
 
@@ -86,13 +87,22 @@ export default Details = ({ route, navigation }) => {
             </View>
 
             {/* Megrendelés Gomb */}
-            <TouchableOpacity onPress={() => navigation.navigate("OrderDetails")}>
+            {popularData.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  navigation.navigate('OrderDetails', {
+                    item: item,
+                })
+                }>
                 <View style={styles.orderWrapper}>
                     <Text styles={styles.orderText}>Rendelés</Text>
                     <Feather name="chevron-right" size={18} color={colors.black}/>
                 </View>
             </TouchableOpacity>
-        </View>
+            ))}
+            </View>
+            
     );
 };
 

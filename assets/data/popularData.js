@@ -37,7 +37,7 @@ const popularData = [
         price: '15000',
         sizeNumber: 36,
         sizeName: 'Nagy',
-        deliveryTime: 120,
+        deliveryTime: 30,
         ingredients: [
             {
                 id: '1',
@@ -60,7 +60,7 @@ const popularData = [
         price: '2000',
         sizeName: 'Közepes',
         sizeNumber: 32,
-        deliveryTime: 45,
+        deliveryTime: 30,
         ingredients: [
             {
                 id: '1',

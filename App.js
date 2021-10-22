@@ -6,6 +6,7 @@ import colors from './assets/colors/colors'
 import Home from './components/Home'
 import Details from './components/Details'
 import OrderDetails from './components/OrderDetails'
+import OrderSuccess from './components/OrderSuccess'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 Icon.loadFont();
@@ -27,6 +28,9 @@ const HelloWorldApp = () => {
             headerShown : false,
           }} />
           <Stack.Screen name="OrderDetails" component={OrderDetails} options={{
+            headerShown : false,
+          }} />
+          <Stack.Screen name="OrderSuccess" component={OrderSuccess} options={{
             headerShown : false,
           }} />
       </Stack.Navigator>
