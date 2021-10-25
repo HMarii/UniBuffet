@@ -11,6 +11,16 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 Icon.loadFont();
 
+{/* 
+  A WolfBüfé egy olyan egyetemi büfét biztosít, amivel ételeket tudnak rendelni,
+  azok a személyek, akik neptun kóddal rendelkeznek.
+  A Büfében számos fincsi étel található, még az időpontot is ki lehet választani.
+  A megadott időpontban (+ szállítási idő) a megrendelő átveheti az ételt
+  az egyetemi büfében.
+  Persze ez az egész csak elméletben játszódik le.
+  Remélem, hogy fincsi ételeket rendelsz majd meg! :)
+*/}
+
 
 
 const HelloWorldApp = () => {
@@ -19,6 +29,7 @@ const HelloWorldApp = () => {
 
   return (
     <>
+    {/* Navigator */}
     <NavigationContainer>
       <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} options={{

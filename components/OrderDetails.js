@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, Image, TextInput, Button} from 'react-native'
+import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, TextInput, Button} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import colors from '../assets/colors/colors'
 import DatePicker from 'react-native-date-picker'
@@ -28,7 +28,7 @@ export default OrderDetails = ({ route, navigation }) => {
     }
 
     return (
-            <SafeAreaView>
+        <SafeAreaView>
                 <View style={styles.headerWrapper}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <View style={styles.headerLeft}>
@@ -36,17 +36,17 @@ export default OrderDetails = ({ route, navigation }) => {
                             </Feather>
                         </View>
                     </TouchableOpacity>
-                    </View>
+                </View>
 
             <View style={styles.inputContainer}>
                 <Text style={styles.headerText}>Rendelés Megerősítése</Text>
                 <View style={styles.inputView}>
-                <TextInput onChangeText={
-            (value) => setNeptunID(value)
-          } style={styles.TextInput} placeholder="Neptun kód"></TextInput>
+                    <TextInput onChangeText={
+                        (value) => setNeptunID(value)
+                    } style={styles.TextInput} placeholder="Neptun kód"></TextInput>
                 </View>
                 <View style={styles.inputView}>
-                <TextInput onChangeText={password => setPassword(password)} value={password} secureTextEntry={true} style={styles.TextInput} placeholder="*****"></TextInput>
+                    <TextInput onChangeText={password => setPassword(password)} value={password} secureTextEntry={true} style={styles.TextInput} placeholder="*****"></TextInput>
                 </View>
                 <Button style={styles.DateButton} title="Válassz időpontot" onPress={() => setOpen(true)} />
                     <DatePicker
@@ -59,18 +59,18 @@ export default OrderDetails = ({ route, navigation }) => {
                         open={open}
                         date={date}
                         onConfirm={(date) => {
-                        setOpen(false)
-                        setDate(date)
-                        setDateChosen(date.getUTCHours() + ":"+ date.getUTCMinutes() + " + "+ item.deliveryTime + " perc")
+                            setOpen(false)
+                            setDate(date)
+                            setDateChosen(date.getUTCHours() + ":"+ date.getUTCMinutes() + " + "+ item.deliveryTime + " perc")
                         }}
                         onCancel={() => {
-                        setOpen(false)
+                            setOpen(false)
                         }}
                     />
                     <Text style={styles.dateChosenText}> Várható kiszállítás: {dateChosen}</Text>
-                <TouchableOpacity style={styles.loginBtn}>
-                    <Text onPress={() => validator()} style={styles.loginText}>Rendelés Véglegesítése</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.loginBtn}>
+                        <Text onPress={() => validator()} style={styles.loginText}>Rendelés Véglegesítése</Text>
+                    </TouchableOpacity>
 
             </View>
         
@@ -153,6 +153,4 @@ const styles = StyleSheet.create({
         fontFamily: "Montserrat-Bold",
         marginTop: 20,
     }
- 
-
 })
