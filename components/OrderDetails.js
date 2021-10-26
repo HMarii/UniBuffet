@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, TextInput, Button} from 'react-native'
+import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, TextInput, Button, ScrollView} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import colors from '../assets/colors/colors'
 import DatePicker from 'react-native-date-picker'
@@ -29,6 +29,7 @@ export default OrderDetails = ({ route, navigation }) => {
 
     return (
         <SafeAreaView>
+            <ScrollView>
                 <View style={styles.headerWrapper}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <View style={styles.headerLeft}>
@@ -73,7 +74,7 @@ export default OrderDetails = ({ route, navigation }) => {
                     </TouchableOpacity>
 
             </View>
-        
+        </ScrollView>
         </SafeAreaView>
     )
 

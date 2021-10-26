@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, Image, FlatList} from 'react-native'
+import {View, StyleSheet, TouchableOpacity, SafeAreaView, Text, Image, FlatList, ScrollView} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import popularData  from '../assets/data/popularData'
@@ -22,6 +22,7 @@ export default Details = ({ route, navigation }) => {
         <View style={styles.container}>
             {/* Fejléc */}
             <SafeAreaView>
+                
                 <View style={styles.headerWrapper}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <View style={styles.headerLeft}>
@@ -72,6 +73,7 @@ export default Details = ({ route, navigation }) => {
             </View>
 
             {/* Hozzávalók */}
+            
             <View style={styles.ingredientsWrapper}>
                 <Text style={styles.ingredientsTitle}>Hozzávalók</Text>
                 <View style={styles.ingredientsListWrapper}>
@@ -94,12 +96,17 @@ export default Details = ({ route, navigation }) => {
                     item: item,
                 })
                 }>
+                    <ScrollView>
                 <View style={styles.orderWrapper}>
+                
                     <Text styles={styles.orderText}>Rendelés</Text>
                     <Feather name="chevron-right" size={18} color={colors.black}/>
+                    
                 </View>
+                </ScrollView>
             </TouchableOpacity>
             ))}
+            
             </View>
             
     );
@@ -210,7 +217,7 @@ const styles = new StyleSheet.create({
         resizeMode: 'contain'
     },
     orderWrapper: {
-        marginTop: 60,
+        marginTop: 5,
         marginHorizontal: 20,
         backgroundColor: colors.primary,
         borderRadius: 50,
