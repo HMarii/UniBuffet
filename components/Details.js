@@ -88,7 +88,7 @@ export default Details = ({ route, navigation }) => {
             </View>
 
             {/* Megrendelés Gomb */}
-            {popularData.map((item) => (
+
               <TouchableOpacity
                 key={item.id}
                 onPress={() =>
@@ -105,7 +105,7 @@ export default Details = ({ route, navigation }) => {
                 </View>
                 </ScrollView>
             </TouchableOpacity>
-            ))}
+
             
             </View>
             
