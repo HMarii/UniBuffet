@@ -1,5 +1,5 @@
-import React from 'react'
-import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ScrollView, SafeAreaView, Button} from 'react-native'
+import React, {useState} from 'react'
+import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ScrollView, SafeAreaView, Alert} from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../assets/colors/colors'
@@ -10,26 +10,55 @@ Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Home = ({ navigation }) => {
+  
+const [selected, setSelected] = useState("fincsiMeal");
+const [selectedPopular, setSelectedPopular] = useState("Fincsi Ételek");
+
+const checkSelected = (item) => {
+
+  if(item == 3) {
+    Alert.alert(
+      "Hoppácska",
+      "Sajnos a kávék elfogytak! :(",
+      [
+        {
+          text: "Ok",
+          style: "cancel"
+        },
+      ]
+    );
+  } else if(item == 1) {
+    setSelected("fincsiMeal");
+    setSelectedPopular("Fincsi Ételek")
+    
+  } else {
+    setSelected("fincsiCake");
+    setSelectedPopular("Fincsi Torták")
+  }
+  
+}
 
     const renderCategoryItem = ({ item }) => {
         return (
+          <TouchableOpacity key={item.id} onPress={() => checkSelected(item.id)}>
             <View style={[styles.categoryItemWrapper, {
-                backgroundColor: item.selected ? colors.primary : colors.textLight,
                 marginLeft: item.selected == 1 ?  20 : 0
               }]}>
-                <Image source={item.image} style={styles.categoryItemImage}></Image>
+                <Image  source={item.image} style={styles.categoryItemImage}></Image>
                 <Text style={styles.categoryItemTitle}>{item.title}</Text>
                 <View style={[styles.categorySelectWrapper, {
-                    backgroundColor: item.selected ? colors.white : colors.secondary
+                    backgroundColor: colors.secondary
                 }]}>
                     <Feather 
                         name="chevron-right" 
                         size={8} 
                         style={styles.categorySelectIcon} 
-                        color={item.selected ? colors.black : colors.white }>
+                        color={colors.white }
+                        >
                     </Feather>
                 </View>
             </View>
+            </TouchableOpacity>
         );
     };
 
@@ -57,19 +86,22 @@ export default Home = ({ navigation }) => {
             <View style={styles.categoriesWrapper}>
                 <Text style={styles.categoriesTitle}>Kategóriák</Text>
                 <View style={styles.categoriesListWrapper}>
+                  
                     <FlatList 
                         data={categoriesData}
                         renderItem={renderCategoryItem}
                         keyExtractor={item => item.id}
                         horizontal={true}
+
                     />
+
                 </View>
             </View>
 
             {/* Népszerűek */}
             <View style={styles.popularWrapper}>
-              <Text style={styles.popularTitle}>Népszerűek</Text>
-              {popularData.map((item) => (
+              <Text style={styles.popularTitle}>Népszerű {selectedPopular}</Text>
+              {popularData.filter(item => item.category==selected).map((item) => (
               <TouchableOpacity
                 key={item.id}
                 onPress={() =>
@@ -123,10 +155,14 @@ export default Home = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity>
+              
           ))}
+              
         </View>
+              
         </ScrollView>
     </View>
+              
     
     );
 };
